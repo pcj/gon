@@ -18,6 +18,11 @@ type Options struct {
 	// to a new location if you do not want these files modified.
 	Files []string
 
+	// Keychain is the Keychain to use for the signing operation. This is
+	// optional. This value must be a valid value for the `--keychain` flag for
+	// the `codesign` binary.
+	Keychain string
+
 	// Identity is the identity to use for the signing operation. This is required.
 	// This value must be a valid value for the `-s` flag for the `codesign`
 	// binary. See the man pages for that for more help since the value can
@@ -70,6 +75,10 @@ func Sign(ctx context.Context, opts *Options) error {
 		"-v",
 		"--timestamp",
 		"--options", "runtime",
+	}
+
+	if opts.Keychain != "" {
+		cmd.Args = append(cmd.Args, "--keychain", opts.Keychain)
 	}
 
 	if len(opts.Entitlements) > 0 {

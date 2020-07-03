@@ -65,6 +65,9 @@ type Notarize struct {
 
 // Sign are the options for codesigning the binaries.
 type Sign struct {
+	// ApplicationKeychain is the name of the keychain to
+	// use for signing binaries. This is used for all binaries in "source".
+	ApplicationKeychain string `hcl:"application_keychain"`
 	// ApplicationIdentity is the ID or name of the certificate to
 	// use for signing binaries. This is used for all binaries in "source".
 	ApplicationIdentity string `hcl:"application_identity"`

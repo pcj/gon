@@ -183,6 +183,7 @@ func realMain() int {
 			err = sign.Sign(context.Background(), &sign.Options{
 				Files:        cfg.Source,
 				Identity:     cfg.Sign.ApplicationIdentity,
+				Keychain:     cfg.Sign.ApplicationKeychain,
 				Entitlements: cfg.Sign.EntitlementsFile,
 				Logger:       logger.Named("sign"),
 			})
